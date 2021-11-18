@@ -1,0 +1,110 @@
+USE [OnlineShopping]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_InsertProduct]    Script Date: 17-11-2021 05:18:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[sp_InsertProduct]
+	-- Add the parameters for the stored procedure here
+	
+	@p_name varchar(50),
+	@p_actualprice money,
+	@p_discount money,
+	@p_quantity int,
+	@p_description varchar(max),
+	@p_image image,
+	@p_catid int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	INSERT into ProductDescription ( ProductName, ActualPrice, Discount, Quantity, Description, Image, CategoryId) values (@p_name, @p_actualprice , @p_discount , @p_quantity, @p_description, @p_image , @p_catid)
+END
+
+
+
+
+****************************************************************
+
+
+
+USE [OnlineShopping]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_UpdateProduct]    Script Date: 17-11-2021 05:20:31 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[sp_UpdateProduct] 
+	-- Add the parameters for the stored procedure here
+	@p_pid int,
+	@p_name varchar(50),
+	@p_actualprice money,
+	@p_discount money,
+	@p_quantity int,
+	@p_description varchar(max),
+	@p_image image,
+	@p_catid int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	UPDATE ProductDescription SET ProductName = @p_name, ActualPrice = @p_actualprice, Discount = @p_discount, Quantity = @p_quantity, Description = @p_description, Image = @p_image, CategoryId = @p_catid
+	where ProductId = @p_pid
+END
+
+
+
+
+*******************************************************************************
+
+
+
+
+
+
+
+
+USE [OnlineShopping]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_deleteProduct]    Script Date: 17-11-2021 05:22:32 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[sp_deleteProduct] 
+	-- Add the parameters for the stored procedure here
+	@p_pid int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	Delete from  ProductDescription where ProductId=@p_pid
+END
+
