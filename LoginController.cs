@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using BalProject;
+using DalProject;
 using System.Web.Http;
-using BalLibrary;
-using DalLibrary;
 using System.Web.Http.Cors;
 using ProjectWebApplication.Models;
+
+
 
 namespace ProjectWebApplication.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+
+
     public class LoginController : ApiController
     {
 
@@ -24,10 +23,10 @@ namespace ProjectWebApplication.Controllers
         public IHttpActionResult AdminLogin(AdminModel ba)
         {
 
-            AdminBAL ba1 = new AdminBAL();
+            AdminBal ba1 = new AdminBal();
             ba1.AdminId = ba.AdminId;
             ba1.AdminPassword = ba.AdminPassword;
-            LoginDAL ds = new LoginDAL();
+            LoginDal ds = new LoginDal();
             bool ans = ds.ValidateAdmin(ba1);
             if (ans == false)
             {
@@ -46,9 +45,8 @@ namespace ProjectWebApplication.Controllers
         public IHttpActionResult CustomerLogin(CustomerLoginModel cust)
         {
 
-            CustomerLoginBAL bal = new CustomerLoginBAL();
-            LoginDAL dal = new LoginDAL();
-
+            CustomerLoginBal bal = new CustomerLoginBal();
+            LoginDal dal = new LoginDal();
             bal.EmailId = cust.EmailId;
             bal.Password = cust.Password;
             bool ans = dal.ValidateCustomer(bal);
@@ -61,9 +59,16 @@ namespace ProjectWebApplication.Controllers
                 return Ok(new { status = 200, isSuccess = true, message = "valid user" });
             }
         }
+        [HttpPost]
+        public IHttpActionResult ForgotPassword(CustomerLoginModel cust)
+        {
+            CustomerLoginBal bal = new CustomerLoginBal();
+            bal.EmailId = cust.EmailId;
+            bal.Password = cust.Password;
+            LoginDal dal = new LoginDal();
+            dal.ForgotPassword(bal);
+            return Ok(new { status = 200, isSuccess = true, message = "Password updated Successfully" });
 
-
-
-
+        }
     }
 }
