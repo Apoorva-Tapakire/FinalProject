@@ -1,0 +1,19 @@
+<br>
+<img src="/assets/single_user.png"  class="mx-auto d-block"><br>
+<form #login="ngForm" class="mb-4" autocomplete="off" (ngSubmit)="validate(login.value)">  
+  <div class="form-group">       
+    <input class="parent" type="text" id="txt1" name="AdminId" [(ngModel)]="UserLogin.AdminId" placeholder="placeholder" />
+  </div>
+  <div class="form-group">
+    
+    <input class="parent" type="password" id="txt2" name="AdminPassword" [(ngModel)]="UserLogin.AdminPassword" placeholder="Password" />
+  </div>    
+  <button type="button" class="btn btn-link px-2" >Forgot password?</button>  
+  <div class="form-row">
+    <div class="btn btn-lg btn-block" >
+    <input type="submit" value="Login"/>
+    <div class="col-6 text-right">  
+    </div>
+  </div>
+    </div>
+  </form>
