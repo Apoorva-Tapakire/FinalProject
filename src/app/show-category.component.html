@@ -1,0 +1,15 @@
+<h1>Categories</h1>
+<table>
+    <thead>
+    <tr>
+        <td>Category ID</td>
+        <td>Category Name</td>
+        <td>Category Image</td>
+    </tr>
+</thead>
+    <tr *ngFor="let c of categorydata">
+        <td>{{c.CategoryID}}</td>
+        <td>{{c.CategoryName}}</td>
+        <td><img [src]="'data:image/jpeg;base64,'+ c.Picture"/> </td>
+    </tr>
+</table>
