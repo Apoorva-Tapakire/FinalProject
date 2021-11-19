@@ -1,0 +1,10 @@
+<form #catdata="ngForm" (ngSubmit)="AddCategory(catdata.value)">
+    <label>Enter Category ID</label>
+    <input type=number [(ngModel)]="category.CategoryID" name="CategoryID" id="CategoryID" />
+    <br>
+    <label>Enter Category Name</label>
+    <input type=text [(ngModel)]="category.CategoryName" name="CategoryName" id="CategoryName"/>
+    <label> Upload File</label>
+    <input  #imageInput type="file" accept="image/*" (change)="processFile(imageInput)" name="Picture" id="Picture" value="" [(ngModel)]="category.Picture"/>
+    <input type="submit" value="submit"/> 
+</form>
