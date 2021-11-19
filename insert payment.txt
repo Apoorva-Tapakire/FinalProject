@@ -1,0 +1,52 @@
+USE [OnlineShopping]
+GO
+/****** Object:  StoredProcedure [dbo].[ForgotPassword]    Script Date: 18-11-2021 19:48:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[ForgotPassword] 
+	-- Add the parameters for the stored procedure here
+	@p_EmailId varchar(50),
+	@p_Password varchar(50)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	 UPDATE Customer SET Password = @p_Password WHERE EmailId = @p_EmailId 
+END
+
+
+
+USE [OnlineShopping]
+GO
+/****** Object:  StoredProcedure [dbo].[Payment_insert]    Script Date: 18-11-2021 20:08:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[Payment_insert]
+	-- Add the parameters for the stored procedure here
+	 @p_BankName varchar(50),
+	 @p_ISFCCode varchar(50),
+	 @p_CardNo numeric,
+	 @p_CVVNo numeric,
+	 @p_UPi varchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	insert into Payment(BankName,IFSCCode,CardNo,CVVNo,UPINo) values(@p_BankName, @p_ISFCCode, @p_CardNo, @p_CVVNo,@p_UPi)
+END
